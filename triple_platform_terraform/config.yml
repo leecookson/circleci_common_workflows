@@ -92,7 +92,7 @@ jobs:
           use_oidc: true
       - tf-scripts/install
       - run:
-          name: Terraform Plan
+          name: Terraform Apply
           command: tfapply gcp
   aws-tf-plan:
     executor: aws-cli/default
@@ -110,7 +110,7 @@ jobs:
           session_duration: "1800"
       - tf-scripts/install
       - run:
-          name: Terraform Plan
+          name: Terraform Plan AWS
           command: tfplan aws
   aws-tf-apply:
     executor: aws-cli/default
@@ -128,7 +128,7 @@ jobs:
           session_duration: "1800"
       - tf-scripts/install
       - run:
-          name: Terraform Plan
+          name: Terraform Apply AWS
           command: tfapply aws
   azure-tf-plan:
     executor: azure-cli/default
@@ -149,7 +149,7 @@ jobs:
                     --tenant "$AZURE_TENANT_ID"
       - tf-scripts/install
       - run:
-          name: Terraform Plan
+          name: Terraform Plan Azure
           command: tfplan azure
   azure-tf-apply:
     executor: azure-cli/default
@@ -170,7 +170,7 @@ jobs:
                     --tenant "$AZURE_TENANT_ID"
       - tf-scripts/install
       - run:
-          name: Terraform Plan
+          name: Terraform Apply Azure
           command: tfapply azure
 # Orchestrate our job run sequence
 workflows:
