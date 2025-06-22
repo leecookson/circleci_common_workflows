@@ -180,7 +180,7 @@ workflows:
   gcp-plan:
     when:
       or:
-        - equal: [true. << pipeline.parameters.allplans >>]
+        - << pipeline.parameters.allplans >>
         - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [gcp, << pipeline.parameters.platform >>]
@@ -196,7 +196,7 @@ workflows:
   aws-plan:
     when:
       or:
-        - equal: [true. << pipeline.parameters.allplans >>]
+        - << pipeline.parameters.allplans >>
         - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [aws, << pipeline.parameters.platform >>]
@@ -212,7 +212,7 @@ workflows:
   azure-plan:
     when:
       or:
-        - equal: [true. << pipeline.parameters.allplans >>]
+        - << pipeline.parameters.allplans >>
         - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [azure, << pipeline.parameters.platform >>]
