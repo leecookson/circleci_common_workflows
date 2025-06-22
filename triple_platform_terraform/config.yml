@@ -15,6 +15,9 @@ parameters:
     type: enum
     enum: [gcp, aws, azure]
     default: aws
+  allplans:
+    type: boolean
+    default: false
 
 jobs:
   gcp-init:
@@ -176,9 +179,11 @@ jobs:
 workflows:
   gcp-plan:
     when:
-      and:
-        - equal: [plan, << pipeline.parameters.action >>]
-        - equal: [gcp, << pipeline.parameters.platform >>]
+      or:
+        - equal: [true. << pipeline.parameters.allplans >>]
+          and:
+            - equal: [plan, << pipeline.parameters.action >>]
+            - equal: [gcp, << pipeline.parameters.platform >>]
     jobs:
       - gcp-tf-plan
   gcp-apply:
@@ -190,9 +195,11 @@ workflows:
       - gcp-tf-apply
   aws-plan:
     when:
-      and:
-        - equal: [plan, << pipeline.parameters.action >>]
-        - equal: [aws, << pipeline.parameters.platform >>]
+      or:
+        - equal: [true. << pipeline.parameters.allplans >>]
+          and:
+            - equal: [plan, << pipeline.parameters.action >>]
+            - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
       - aws-tf-plan
   aws-apply:
@@ -204,9 +211,11 @@ workflows:
       - aws-tf-apply
   azure-plan:
     when:
-      and:
-        - equal: [plan, << pipeline.parameters.action >>]
-        - equal: [azure, << pipeline.parameters.platform >>]
+      or:
+        - equal: [true. << pipeline.parameters.allplans >>]
+          and:
+            - equal: [plan, << pipeline.parameters.action >>]
+            - equal: [azure, << pipeline.parameters.platform >>]
     jobs:
       - azure-tf-plan
   azure-apply:
