@@ -174,13 +174,6 @@ jobs:
           command: tfapply azure
 # Orchestrate our job run sequence
 workflows:
-  azure-plan:
-    when:
-      and:
-        - equal: [plan, << pipeline.parameters.action >>]
-        - equal: [azure, << pipeline.parameters.platform >>]
-    jobs:
-      - azure-tf-plan
   gcp-plan:
     when:
       and:
@@ -198,7 +191,7 @@ workflows:
   aws-plan:
     when:
       and:
-        - equal: [apply, << pipeline.parameters.action >>]
+        - equal: [plan, << pipeline.parameters.action >>]
         - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
       - aws-tf-plan
@@ -209,6 +202,13 @@ workflows:
         - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
       - aws-tf-apply
+  azure-plan:
+    when:
+      and:
+        - equal: [plan, << pipeline.parameters.action >>]
+        - equal: [azure, << pipeline.parameters.platform >>]
+    jobs:
+      - azure-tf-plan
   azure-apply:
     when:
       and:
