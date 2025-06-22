@@ -181,7 +181,7 @@ workflows:
     when:
       or:
         - equal: [true. << pipeline.parameters.allplans >>]
-          and:
+        - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [gcp, << pipeline.parameters.platform >>]
     jobs:
@@ -197,7 +197,7 @@ workflows:
     when:
       or:
         - equal: [true. << pipeline.parameters.allplans >>]
-          and:
+        - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
@@ -213,7 +213,7 @@ workflows:
     when:
       or:
         - equal: [true. << pipeline.parameters.allplans >>]
-          and:
+        - and:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [azure, << pipeline.parameters.platform >>]
     jobs:
