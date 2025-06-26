@@ -144,7 +144,7 @@ workflows:
         - equal: [apply, << pipeline.parameters.action >>]
         - equal: [gcp, << pipeline.parameters.platform >>]
     jobs:
-      - gcp-tf-apply
+      - tf-scripts/gcp-tf-apply
   aws-plan:
     when:
       or:
@@ -153,14 +153,14 @@ workflows:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
-      - aws-tf-plan
+      - tf-scripts/aws-tf-plan
   aws-apply:
     when:
       and:
         - equal: [apply, << pipeline.parameters.action >>]
         - equal: [aws, << pipeline.parameters.platform >>]
     jobs:
-      - aws-tf-apply
+      - tf-scripts/aws-tf-apply
   azure-plan:
     when:
       or:
@@ -169,11 +169,11 @@ workflows:
             - equal: [plan, << pipeline.parameters.action >>]
             - equal: [azure, << pipeline.parameters.platform >>]
     jobs:
-      - azure-tf-plan
+      - tf-scripts/azure-tf-plan
   azure-apply:
     when:
       and:
         - equal: [apply, << pipeline.parameters.action >>]
         - equal: [azure, << pipeline.parameters.platform >>]
     jobs:
-      - azure-tf-apply
+      - tf-scripts/azure-tf-apply
